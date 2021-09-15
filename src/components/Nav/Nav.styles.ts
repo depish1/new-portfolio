@@ -17,6 +17,7 @@ export const StyledNav = styled.nav<Props>`
     @media only screen and (max-width: ${({ theme }) => theme.menuBreakPoint}) {
       flex-direction: column;
       position: absolute;
+      z-index: 10;
       background-color: red;
       top: ${({ theme }) => theme.headerHeight};
       left: 0;

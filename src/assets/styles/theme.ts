@@ -8,4 +8,6 @@ export const theme = {
   },
   headerHeight: "5rem",
   menuBreakPoint: "900px",
+  articleWidthBreakPoint: "1200px",
+  buttonsBreakPoint: "550px",
 };
