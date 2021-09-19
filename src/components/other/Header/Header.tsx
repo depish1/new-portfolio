@@ -1,6 +1,6 @@
 import { StyledHeader, StyledLogo } from "./Header.styles";
-import Nav from "components/Nav/Nav";
-import HamburgerButton from "components/HamburgerButton/HamburgerButton";
+import Nav from "components/other/Nav/Nav";
+import HamburgerButton from "components/other/HamburgerButton/HamburgerButton";
 
 const Header: React.FunctionComponent = () => {
   return (

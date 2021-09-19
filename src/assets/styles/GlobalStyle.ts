@@ -10,8 +10,9 @@ const GlobalStyle = createGlobalStyle`
     html, body {
         box-sizing: border-box;
         font-family: 'Roboto', sans-serif;
-        overflow: hidden;
         width: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
     }
     a, button {
         font-family: 'Roboto', sans-serif;

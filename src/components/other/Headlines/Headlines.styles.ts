@@ -7,10 +7,11 @@ interface h2Props {
 export const SectionHeadline = styled.h2`
   display: flex;
   justify-content: center;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 800;
   width: 100%;
   margin: 1rem;
+  margin-bottom: 3rem;
   max-width: 1280px;
 `;
 

@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
+  position: sticky;
+  top: 0;
+  z-index: 20;
   height: ${({ theme }) => theme.headerHeight};
   width: 100%;
   display: flex;

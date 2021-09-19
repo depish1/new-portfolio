@@ -7,7 +7,6 @@ export const theme = {
     blackHover: "#434543",
   },
   headerHeight: "5rem",
-  menuBreakPoint: "900px",
+  menuBreakPoint: "1000px",
   articleWidthBreakPoint: "1200px",
-  buttonsBreakPoint: "550px",
 };

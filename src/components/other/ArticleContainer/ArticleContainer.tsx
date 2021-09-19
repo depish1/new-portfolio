@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { StyledArticleContainer } from "./ArticleContainer.styles";
-import { ArticleHeadline } from "components/Headlines/Headlines.styles";
+import { ArticleHeadline } from "components/other/Headlines/Headlines.styles";
 
 interface Props {
   borderColor: string;

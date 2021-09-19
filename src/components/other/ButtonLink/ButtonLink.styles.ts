@@ -7,7 +7,7 @@ interface IStyledButtonLinkProps {
 
 export const StyledButtonLink = styled.a<IStyledButtonLinkProps>`
   display: flex;
-  width: 150px;
+  width: 100%;
   justify-content: center;
   padding: 0.5rem 0;
   margin-top: 1rem;
@@ -29,17 +29,6 @@ export const StyledButtonLink = styled.a<IStyledButtonLinkProps>`
     background-color: ${({ textColor }) => textColor};
     color: ${({ bgColor }) => bgColor};
   }
-
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.buttonsBreakPoint}) {
-    margin-right: 1rem;
-    &:first-child {
-      margin-top: 1rem;
-    }
-    &:last-child {
-      margin-right: 0rem;
-    }
-  }
 `;
 
 export const ButtonsWrapper = styled.div`
@@ -48,10 +37,4 @@ export const ButtonsWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 2rem;
-
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.buttonsBreakPoint}) {
-    flex-direction: row;
-    justify-content: space-between;
-  }
 `;

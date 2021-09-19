@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { StyledSectionContainer, Wrapper } from "./SectionContainer.styles";
-import { SectionHeadline } from "components/Headlines/Headlines.styles";
+import { SectionHeadline } from "components/other/Headlines/Headlines.styles";
 
 interface Props {
   bgColor: string;

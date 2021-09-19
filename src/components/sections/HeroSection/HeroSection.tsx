@@ -1,10 +1,11 @@
 import { FunctionComponent } from "react";
-import SectionContainer from "components/SectionContainer/SectionContainer";
-import ArticleContainer from "components/ArticleContainer/ArticleContainer";
-import ButtonLink from "components/ButtonLink/ButtonLink";
-import { ButtonsWrapper } from "components/ButtonLink/ButtonLink.styles";
-import { BoldText } from "./HeroSection.styles";
+import SectionContainer from "components/other/SectionContainer/SectionContainer";
+import ArticleContainer from "components/other/ArticleContainer/ArticleContainer";
+import ButtonLink from "components/other/ButtonLink/ButtonLink";
+import { ButtonsWrapper } from "components/other/ButtonLink/ButtonLink.styles";
+import { BoldText } from "components/other/ArticleContainer/ArticleContainer.styles";
 import { theme } from "assets/styles/theme";
+import { IntroductionParagraph } from "./HeroSection.styles";
 
 const HeroSection: FunctionComponent = () => {
   const {
@@ -24,8 +25,10 @@ const HeroSection: FunctionComponent = () => {
         headlineText={"Hello"}
         borderColor={black}
       >
-        My name is <BoldText>Michał Depa</BoldText> and I am{" "}
-        <BoldText>Frontend Developer</BoldText>.
+        <IntroductionParagraph>
+          My name is <BoldText>Michał Depa</BoldText> and I am{" "}
+          <BoldText>Frontend Developer</BoldText>.
+        </IntroductionParagraph>
         <ButtonsWrapper>
           <ButtonLink
             textColor={yellow}

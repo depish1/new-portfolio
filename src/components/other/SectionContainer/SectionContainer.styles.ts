@@ -12,17 +12,25 @@ interface IWrapperProps {
 
 export const StyledSectionContainer = styled.section<IStyledSectionContainerProps>`
   width: 100%;
-  min-height: calc(100vh - ${({ minusHeight }) => minusHeight});
+  min-height: calc(100vh - ${({ minusHeight }) => minusHeight ?? "0px"});
   color: ${({ textColor }) => textColor};
   background-color: ${({ bgColor }) => bgColor};
   display: flex;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+
+  @media only screen and (min-width: ${({ theme }) => theme.menuBreakPoint}) {
+    padding: 2rem;
+  }
 `;
 
 export const Wrapper = styled.div<IWrapperProps>`
+  height: 100%;
   width: 100%;
-  max-width: 1280px;
-  margin: 2rem;
+  display: flex;
+
   ${({ centerXY }) =>
     centerXY &&
     `display: flex;
