@@ -27,7 +27,8 @@ const HeroSection: FunctionComponent = () => {
       >
         <IntroductionParagraph>
           My name is <BoldText>Michał Depa</BoldText> and I am{" "}
-          <BoldText>Frontend Developer</BoldText>.
+          <BoldText>Frontend Developer</BoldText>. I am looking for a job in
+          Warsaw or remotely.
         </IntroductionParagraph>
         <ButtonsWrapper>
           <ButtonLink

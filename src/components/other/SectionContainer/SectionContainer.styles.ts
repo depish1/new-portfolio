@@ -12,7 +12,7 @@ interface IWrapperProps {
 
 export const StyledSectionContainer = styled.section<IStyledSectionContainerProps>`
   width: 100%;
-  min-height: calc(100vh - ${({ minusHeight }) => minusHeight ?? "0px"});
+  min-height: 100vh;
   color: ${({ textColor }) => textColor};
   background-color: ${({ bgColor }) => bgColor};
   display: flex;

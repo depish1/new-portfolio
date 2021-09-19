@@ -6,7 +6,10 @@ import ProjectsArr from "./ProjectsData";
 import { ButtonsWrapper } from "components/other/ButtonLink/ButtonLink.styles";
 import { theme } from "assets/styles/theme";
 import { ProjectsWrapper, ProjectDescription } from "./ProjectsSection.styles";
-import { BoldText } from "components/other/ArticleContainer/ArticleContainer.styles";
+import {
+  BoldText,
+  Technology,
+} from "components/other/ArticleContainer/ArticleContainer.styles";
 
 const ProjectsSection: FunctionComponent = () => {
   const {
@@ -35,7 +38,9 @@ const ProjectsSection: FunctionComponent = () => {
                 <ul>
                   {technologies.map((tech) => (
                     <li key={tech}>
-                      <span>{tech}</span>
+                      <Technology borderColor={yellow} textColor={black}>
+                        {tech}
+                      </Technology>
                     </li>
                   ))}
                 </ul>

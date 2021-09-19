@@ -2,19 +2,76 @@ import { FunctionComponent, ReactElement } from "react";
 import { theme } from "assets/styles/theme";
 import SectionContainer from "components/other/SectionContainer/SectionContainer";
 import ArticleContainer from "components/other/ArticleContainer/ArticleContainer";
+import {
+  Technology,
+  BoldText,
+} from "components/other/ArticleContainer/ArticleContainer.styles";
+import { Wrapper } from "components/other/SectionContainer/SectionContainer.styles";
+import { AboutMeTextSection, SkillsList } from "./AboutSection.styles";
+
+interface ISkills {
+  category: string;
+  skillsArr: string[];
+}
 
 const AboutSection: FunctionComponent = (): ReactElement => {
   const { yellow, black } = theme.colors;
+  const skills: ISkills[] = [
+    {
+      category: "React",
+      skillsArr: ["Redux", "Styled components", "React Router"],
+    },
+    { category: "Javascript", skillsArr: ["ES6+", "Typescrit"] },
+    { category: "Css", skillsArr: ["Sass", "BEM", "CSS Modules"] },
+    { category: "HTML", skillsArr: ["Accessibility", "Semantics"] },
+    { category: "Others", skillsArr: ["Git", "Fork", "Omega", "VS Code"] },
+  ];
+
+  const AboutMeText1: string =
+    "My name is Michał, I'm 25 years old and I come from Warsaw. I have been learning programming for 1.5 years and since the beginning of September 2021 I have been gaining my first full-time commercial experience as a Frontend Developer. ";
+
+  const AboutMeText2: string =
+    "I am a communicative person who likes to spend time with other people. When I program, I am soaked up and I want to understand the problem in its entirety. I specialize in React and am currently open to a job offer in Warsaw or remotely.";
 
   return (
     <SectionContainer bgColor={yellow} textColor={black}>
-      <ArticleContainer
-        headlineText="About me"
-        borderColor={black}
-        bgColor={yellow}
-      >
-        xdd
-      </ArticleContainer>
+      <Wrapper centerXY={true}>
+        <ArticleContainer
+          headlineText="About me"
+          borderColor={black}
+          bgColor={yellow}
+        >
+          <AboutMeTextSection>
+            <p>{AboutMeText1}</p>
+            <p>{AboutMeText2}</p>
+          </AboutMeTextSection>
+          <BoldText color={black}>My skills:</BoldText>
+          <SkillsList>
+            {skills.map(({ category, skillsArr }) => (
+              <li>
+                <Technology
+                  borderColor={black}
+                  textColor={yellow}
+                  isMain={true}
+                >
+                  {category}
+                </Technology>
+                <ul>
+                  {skillsArr.map((skill) => (
+                    <li>
+                      <Technology borderColor={black} textColor={yellow}>
+                        {skill}
+                      </Technology>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </SkillsList>
+        </ArticleContainer>
+      </Wrapper>
     </SectionContainer>
   );
 };
+
+export default AboutSection;

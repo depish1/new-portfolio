@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
-interface Props {
+interface IArticleContainerProps {
   borderColor: string;
 }
 
-export const StyledArticleContainer = styled.article<Props>`
+interface ITechnologyProps {
+  borderColor: string;
+  textColor: string;
+  isMain?: boolean;
+}
+
+export const StyledArticleContainer = styled.article<IArticleContainerProps>`
   padding: 2rem;
   border: 3px solid ${({ borderColor }) => borderColor};
   width: 100%;
@@ -22,28 +28,6 @@ export const StyledArticleContainer = styled.article<Props>`
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
-
-    li {
-      font-size: 1rem;
-
-      width: max-content;
-      padding: 0.5rem;
-      margin: 0.5rem;
-      position: relative;
-
-      &::before {
-        content: "";
-        display: block;
-        position: absolute;
-
-        transform: skew(20deg);
-        border: 3px solid ${({ borderColor }) => borderColor};
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-      }
-    }
   }
 
   @media only screen and (min-width: ${({ theme }) =>
@@ -54,4 +38,37 @@ export const StyledArticleContainer = styled.article<Props>`
 export const BoldText = styled.span`
   font-weight: bold;
   word-wrap: break-word;
+`;
+
+export const Technology = styled.div<ITechnologyProps>`
+  font-size: 1rem;
+  width: max-content;
+  margin: 0.8rem;
+  position: relative;
+  height: min-content;
+  z-index: 10;
+  ${({ isMain, borderColor, textColor }) => {
+    if (isMain) {
+      return `background-color: ${borderColor};
+        color: ${textColor};`;
+    }
+  }}
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    transform: skew(20deg);
+    border: 3px solid ${({ borderColor }) => borderColor};
+    top: -0.5rem;
+    bottom: -0.5rem;
+    left: -0.5rem;
+    right: -0.5rem;
+    z-index: -1;
+    ${({ isMain, borderColor }) => {
+      if (isMain) {
+        return `background-color: ${borderColor};`;
+      }
+    }}
+  }
 `;
