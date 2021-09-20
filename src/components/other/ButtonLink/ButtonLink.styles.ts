@@ -20,6 +20,7 @@ export const StyledButtonLink = styled.a<IStyledButtonLinkProps>`
   background: ${({ bgColor }) => bgColor};
   transition: all 0.3s ease-in-out;
   box-shadow: ${({ bgColor }) => bgColor}88 0px 3px 8px;
+  cursor: pointer;
 
   &:first-child {
     margin-top: 0rem;

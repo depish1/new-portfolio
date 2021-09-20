@@ -3,9 +3,10 @@ import { StyledButtonLink } from "./ButtonLink.styles";
 
 interface IButtonLinkProps {
   text: string;
-  link: string;
+  link?: string;
   textColor: string;
   bgColor: string;
+  type?: "button" | "submit";
 }
 
 const ButtonLink: FunctionComponent<IButtonLinkProps> = ({
@@ -13,9 +14,15 @@ const ButtonLink: FunctionComponent<IButtonLinkProps> = ({
   link,
   textColor,
   bgColor,
+  type = "button",
 }) => {
   return (
-    <StyledButtonLink href={link} textColor={textColor} bgColor={bgColor}>
+    <StyledButtonLink
+      href={link}
+      textColor={textColor}
+      bgColor={bgColor}
+      type={type}
+    >
       {text}
     </StyledButtonLink>
   );

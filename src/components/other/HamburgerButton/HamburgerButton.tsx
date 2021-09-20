@@ -18,7 +18,6 @@ export const HamburgerButton: React.FunctionComponent = () => {
   const isOpenClassNameForWrapper = `hamburger__wrapper ${
     isMenuOpen ? "isOpen" : ""
   }`;
-  console.log(isOpenClassNameForWrapper);
   return (
     <StyledHamburgerButton onClick={handleToggleMenu}>
       <div className={isOpenClassNameForWrapper}>

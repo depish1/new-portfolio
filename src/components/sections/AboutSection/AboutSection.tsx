@@ -6,7 +6,6 @@ import {
   Technology,
   BoldText,
 } from "components/other/ArticleContainer/ArticleContainer.styles";
-import { Wrapper } from "components/other/SectionContainer/SectionContainer.styles";
 import { AboutMeTextSection, SkillsList } from "./AboutSection.styles";
 
 interface ISkills {
@@ -35,41 +34,35 @@ const AboutSection: FunctionComponent = (): ReactElement => {
 
   return (
     <SectionContainer bgColor={yellow} textColor={black}>
-      <Wrapper centerXY={true}>
-        <ArticleContainer
-          headlineText="About me"
-          borderColor={black}
-          bgColor={yellow}
-        >
-          <AboutMeTextSection>
-            <p>{AboutMeText1}</p>
-            <p>{AboutMeText2}</p>
-          </AboutMeTextSection>
-          <BoldText color={black}>My skills:</BoldText>
-          <SkillsList>
-            {skills.map(({ category, skillsArr }) => (
-              <li>
-                <Technology
-                  borderColor={black}
-                  textColor={yellow}
-                  isMain={true}
-                >
-                  {category}
-                </Technology>
-                <ul>
-                  {skillsArr.map((skill) => (
-                    <li>
-                      <Technology borderColor={black} textColor={yellow}>
-                        {skill}
-                      </Technology>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </SkillsList>
-        </ArticleContainer>
-      </Wrapper>
+      <ArticleContainer
+        headlineText="About me"
+        borderColor={black}
+        bgColor={yellow}
+      >
+        <AboutMeTextSection>
+          <p>{AboutMeText1}</p>
+          <p>{AboutMeText2}</p>
+        </AboutMeTextSection>
+        <BoldText color={black}>My skills:</BoldText>
+        <SkillsList>
+          {skills.map(({ category, skillsArr }) => (
+            <li key={category}>
+              <Technology borderColor={black} textColor={yellow} isMain={true}>
+                {category}
+              </Technology>
+              <ul>
+                {skillsArr.map((skill) => (
+                  <li key={skill}>
+                    <Technology borderColor={black} textColor={yellow}>
+                      {skill}
+                    </Technology>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </SkillsList>
+      </ArticleContainer>
     </SectionContainer>
   );
 };

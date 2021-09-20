@@ -21,7 +21,6 @@ const ProjectsSection: FunctionComponent = () => {
       bgColor={black}
       textColor={yellow}
       headlineText="Projects"
-      centerXY={true}
     >
       <ProjectsWrapper>
         {ProjectsArr.map(

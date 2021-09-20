@@ -10,7 +10,7 @@ export const SectionHeadline = styled.h2`
   font-size: 2.5rem;
   font-weight: 800;
   width: 100%;
-  margin: 1rem;
+  margin: 0 1rem;
   margin-bottom: 3rem;
   max-width: 1280px;
 `;

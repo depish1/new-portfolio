@@ -30,8 +30,8 @@ export const StyledArticleContainer = styled.article<IArticleContainerProps>`
     flex-wrap: wrap;
   }
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.articleWidthBreakPoint}) {
+  @media only screen and (min-width: ${({ theme }) => theme.menuBreakPoint}) {
+    padding: 2rem 3rem;
   }
 `;
 

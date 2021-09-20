@@ -3,11 +3,6 @@ import styled from "styled-components";
 interface IStyledSectionContainerProps {
   bgColor: string;
   textColor: string;
-  minusHeight: string;
-}
-
-interface IWrapperProps {
-  centerXY: boolean;
 }
 
 export const StyledSectionContainer = styled.section<IStyledSectionContainerProps>`
@@ -19,21 +14,18 @@ export const StyledSectionContainer = styled.section<IStyledSectionContainerProp
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 1rem;
+  padding: 3rem 1rem;
 
   @media only screen and (min-width: ${({ theme }) => theme.menuBreakPoint}) {
     padding: 2rem;
   }
 `;
 
-export const Wrapper = styled.div<IWrapperProps>`
+export const Wrapper = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-
-  ${({ centerXY }) =>
-    centerXY &&
-    `display: flex;
-    justify-content: center;
-    align-items: center;`}
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;

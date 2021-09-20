@@ -15,18 +15,14 @@ const SectionContainer: FunctionComponent<Props> = ({
   bgColor,
   textColor,
   headlineText,
-  minusHeight = "0px",
   children,
-  centerXY = false,
 }) => {
   return (
-    <StyledSectionContainer
-      bgColor={bgColor}
-      textColor={textColor}
-      minusHeight={minusHeight}
-    >
-      {headlineText && <SectionHeadline>{headlineText}</SectionHeadline>}
-      <Wrapper centerXY={centerXY}>{children}</Wrapper>
+    <StyledSectionContainer bgColor={bgColor} textColor={textColor}>
+      <Wrapper>
+        {headlineText && <SectionHeadline>{headlineText}</SectionHeadline>}
+        {children}
+      </Wrapper>
     </StyledSectionContainer>
   );
 };

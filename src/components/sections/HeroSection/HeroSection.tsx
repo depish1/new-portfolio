@@ -10,16 +10,10 @@ import { IntroductionParagraph } from "./HeroSection.styles";
 const HeroSection: FunctionComponent = () => {
   const {
     colors: { yellow, black },
-    headerHeight,
   } = theme;
 
   return (
-    <SectionContainer
-      bgColor={yellow}
-      textColor={black}
-      minusHeight={headerHeight}
-      centerXY={true}
-    >
+    <SectionContainer bgColor={yellow} textColor={black}>
       <ArticleContainer
         bgColor={yellow}
         headlineText={"Hello"}

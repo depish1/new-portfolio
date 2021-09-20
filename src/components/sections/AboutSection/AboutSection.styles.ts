@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const AboutMeTextSection = styled.p`
+export const AboutMeTextSection = styled.div`
   p {
     margin: 0.5rem 0;
 
