@@ -1,49 +1,34 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 import SectionContainer from "components/other/SectionContainer/SectionContainer";
 import ArticleContainer from "components/other/ArticleContainer/ArticleContainer";
-import ButtonLink from "components/other/ButtonLink/ButtonLink";
-import { ButtonsWrapper } from "components/other/ButtonLink/ButtonLink.styles";
+import Link from "components/other/ButtonLink/Link";
+import { LinksWrapper } from "components/other/ButtonLink/ButtonLink.styles";
 import { BoldText } from "components/other/ArticleContainer/ArticleContainer.styles";
-import { theme } from "assets/styles/theme";
 import { IntroductionParagraph } from "./HeroSection.styles";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
-const HeroSection: FunctionComponent = () => {
-  const {
-    colors: { yellow, black },
-  } = theme;
+const HeroSection: FunctionComponent = ({ children }) => {
+  useEffect(() => {
+    Aos.init({
+      duration: 1200,
+    });
+  }, []);
 
   return (
-    <SectionContainer bgColor={yellow} textColor={black}>
-      <ArticleContainer
-        bgColor={yellow}
-        headlineText={"Hello"}
-        borderColor={black}
-      >
+    <SectionContainer id="hero">
+      {children}
+      <ArticleContainer headlineText={"Hello"} aos="fade-down">
         <IntroductionParagraph>
           My name is <BoldText>Michał Depa</BoldText> and I am{" "}
           <BoldText>Frontend Developer</BoldText>. I am looking for a job in
           Warsaw or remotely.
         </IntroductionParagraph>
-        <ButtonsWrapper>
-          <ButtonLink
-            textColor={yellow}
-            bgColor={black}
-            text="Linkedin"
-            link="https://www.linkedin.com/in/mdepa1"
-          />
-          <ButtonLink
-            textColor={yellow}
-            bgColor={black}
-            text="Github"
-            link="https://github.com/depish1"
-          />
-          <ButtonLink
-            textColor={yellow}
-            bgColor={black}
-            text="Contact me"
-            link="#"
-          />
-        </ButtonsWrapper>
+        <LinksWrapper>
+          <Link text="Linkedin" link="https://www.linkedin.com/in/mdepa1" />
+          <Link text="Github" link="https://github.com/depish1" />
+          <Link text="Contact me" link="#contact" />
+        </LinksWrapper>
       </ArticleContainer>
     </SectionContainer>
   );

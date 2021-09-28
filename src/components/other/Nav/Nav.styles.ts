@@ -3,6 +3,7 @@ import styled from "styled-components";
 interface Props {
   isMenuOpen: boolean;
   children: React.ReactNode;
+  isScrolled: boolean;
 }
 
 export const StyledNav = styled.nav<Props>`
@@ -18,10 +19,16 @@ export const StyledNav = styled.nav<Props>`
       flex-direction: column;
       position: absolute;
       z-index: 10;
-      top: ${({ theme }) => theme.headerHeight};
+      top: calc(
+        ${({ theme: { headerHeight } }) => headerHeight} +
+          ${({ isScrolled }) => (isScrolled ? "0rem" : "1rem")}
+      );
       left: 0;
       width: 100%;
-      height: calc(100vh - ${({ theme }) => theme.headerHeight});
+      height: calc(
+        100vh - ${({ theme }) => theme.headerHeight} -
+          ${({ isScrolled }) => (isScrolled ? "0rem" : "1rem")}
+      );
       transform: translateX(${({ isMenuOpen }) => (isMenuOpen ? "0" : "100%")});
     }
 
@@ -30,14 +37,14 @@ export const StyledNav = styled.nav<Props>`
 
       @media only screen and (max-width: ${({ theme }) =>
           theme.menuBreakPoint}) {
-        background-color: ${({ theme }) => theme.colors.blackHover};
+        background-color: ${({ theme }) => theme.colors.background};
         a {
-          color: ${({ theme }) => theme.colors.yellowHover};
+          color: ${({ theme }) => theme.colors.text};
         }
         &:nth-child(odd) {
-          background-color: ${({ theme }) => theme.colors.yellowHover};
+          background-color: ${({ theme }) => theme.colors.primary};
           a {
-            color: ${({ theme }) => theme.colors.blackHover};
+            color: ${({ theme }) => theme.colors.text};
           }
         }
       }
@@ -49,9 +56,13 @@ export const StyledNav = styled.nav<Props>`
         align-items: center;
         height: 100%;
         padding: 0 3rem;
-        color: ${({ theme }) => theme.colors.yellow};
+        color: ${({
+          theme: {
+            colors: { text },
+          },
+        }) => text};
         font-weight: 700;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         transition: all 0.3s ease-in-out;
 
         &::before {
@@ -62,7 +73,12 @@ export const StyledNav = styled.nav<Props>`
           width: 0;
           bottom: 0;
           left: 50%;
-          background-color: ${({ theme }) => theme.colors.yellow};
+          background-color: ${({
+            isScrolled,
+            theme: {
+              colors: { primary, background },
+            },
+          }) => (isScrolled ? primary : background)};
           transition: all 0.3s ease-in-out;
         }
         &::after {
@@ -73,16 +89,25 @@ export const StyledNav = styled.nav<Props>`
           width: 0;
           bottom: 0;
           left: 50%;
-          background-color: ${({ theme }) => theme.colors.yellow};
-          transition: all 0.3s ease-in-out;
+          background-color: ${({
+            isScrolled,
+            theme: {
+              colors: { primary, background },
+            },
+          }) => (isScrolled ? primary : background)};
+          transition: all 0.4s ease-in-out;
         }
 
         &:hover,
         &:focus {
           @media only screen and (min-width: ${({ theme }) =>
               theme.menuBreakPoint}) {
-            color: ${({ theme }) => theme.colors.yellowHover};
-            background-color: ${({ theme }) => theme.colors.blackHover};
+            color: ${({
+              isScrolled,
+              theme: {
+                colors: { primary, background },
+              },
+            }) => (isScrolled ? primary : background)};
 
             &::before {
               left: 0;

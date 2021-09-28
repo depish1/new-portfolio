@@ -3,23 +3,19 @@ import { StyledArticleContainer } from "./ArticleContainer.styles";
 import { ArticleHeadline } from "components/other/Headlines/Headlines.styles";
 
 interface Props {
-  borderColor: string;
   headlineText: string;
-  bgColor: string;
+  aos?: string;
   children: React.ReactNode;
 }
 
 const ArticleContainer: FunctionComponent<Props> = ({
-  borderColor,
   headlineText,
-  bgColor,
   children,
+  aos,
 }) => {
   return (
-    <StyledArticleContainer borderColor={borderColor}>
-      {headlineText && (
-        <ArticleHeadline bgColor={bgColor}>{headlineText}</ArticleHeadline>
-      )}
+    <StyledArticleContainer data-aos-mirror="true" data-aos={aos}>
+      {headlineText && <ArticleHeadline>{headlineText}</ArticleHeadline>}
       {children}
     </StyledArticleContainer>
   );

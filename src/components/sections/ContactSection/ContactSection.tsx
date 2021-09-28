@@ -1,18 +1,19 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 import SectionContainer from "components/other/SectionContainer/SectionContainer";
 import ArticleContainer from "components/other/ArticleContainer/ArticleContainer";
 import ContactForm from "components/other/ContactForm/ContactForm";
-import { theme } from "assets/styles/theme";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const ContactSection: FunctionComponent = () => {
-  const { black, yellow } = theme.colors;
+  useEffect(() => {
+    Aos.init({
+      duration: 1200,
+    });
+  }, []);
   return (
-    <SectionContainer bgColor={black} textColor={yellow}>
-      <ArticleContainer
-        bgColor={black}
-        borderColor={yellow}
-        headlineText="Contact me"
-      >
+    <SectionContainer id="contact">
+      <ArticleContainer headlineText="Contact me" aos="fade-down">
         <ContactForm />
       </ArticleContainer>
     </SectionContainer>

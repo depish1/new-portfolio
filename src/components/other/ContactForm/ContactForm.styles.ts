@@ -8,24 +8,23 @@ export const StyledContactForm = styled.form`
   label {
     display: flex;
     flex-direction: column;
-    color: ${({ theme }) => theme.colors.yellowHover};
+    color: ${({ theme }) => theme.colors.text};
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.1rem;
     position: absolute;
-    top: 2.4rem;
+    top: 3.1rem;
     left: 0.5rem;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
   input,
   textarea {
-    margin-top: 1.7rem;
+    margin-top: 2.5rem;
     padding: 0.5rem;
-    color: ${({ theme }) => theme.colors.yellow};
-    font-size: 1rem;
-    background-color: ${({ theme }) => theme.colors.blackHover};
-    border-bottom: 1px solid ${({ theme }) => theme.colors.yellow};
+    color: ${({ theme }) => theme.colors.text};
+    font-size: 1.1rem;
+    background-color: ${({ theme }) => theme.colors.background};
     width: 100%;
-    border: 2px inset ${({ theme }) => theme.colors.blackHover};
+    border: 2px inset ${({ theme }) => theme.colors.primary};
     border-radius: 5px;
   }
 
@@ -33,13 +32,20 @@ export const StyledContactForm = styled.form`
     height: 7rem;
   }
 
-  input:valid + label,
+  .not-empty,
   input:focus + label,
-  textarea:valid + label,
   textarea:focus + label {
-    top: 0.25rem;
+    top: 0.95rem;
     left: 0;
-    color: ${({ theme }) => theme.colors.yellow};
+    color: ${({ theme }) => theme.colors.primary};
+  }
+
+  span {
+    position: absolute;
+    bottom: -1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: ${({ theme }) => theme.colors.error};
   }
 `;
 

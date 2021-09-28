@@ -1,24 +1,18 @@
 import styled from "styled-components";
 
-interface IArticleContainerProps {
-  borderColor: string;
-}
-
 interface ITechnologyProps {
-  borderColor: string;
-  textColor: string;
   isMain?: boolean;
 }
 
-export const StyledArticleContainer = styled.article<IArticleContainerProps>`
+export const StyledArticleContainer = styled.article`
   padding: 2rem;
-  border: 3px solid ${({ borderColor }) => borderColor};
+  border: 3px solid ${({ theme }) => theme.colors.text};
   width: 100%;
   max-width: 550px;
   position: relative;
   border-radius: 0.25rem;
   font-size: 1.2rem;
-  box-shadow: ${({ borderColor }) => borderColor}88 0px 3px 8px;
+  box-shadow: ${({ theme }) => theme.colors.text};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -47,10 +41,16 @@ export const Technology = styled.div<ITechnologyProps>`
   position: relative;
   height: min-content;
   z-index: 10;
-  ${({ isMain, borderColor, textColor }) => {
+  font-weight: bold;
+  ${({
+    isMain,
+    theme: {
+      colors: { primary, text },
+    },
+  }) => {
     if (isMain) {
-      return `background-color: ${borderColor};
-        color: ${textColor};`;
+      return `background-color: ${primary};
+        color: ${text};`;
     }
   }}
 
@@ -59,15 +59,25 @@ export const Technology = styled.div<ITechnologyProps>`
     display: block;
     position: absolute;
     transform: skew(20deg);
-    border: 3px solid ${({ borderColor }) => borderColor};
+    border: 3px solid
+      ${({
+        theme: {
+          colors: { primary },
+        },
+      }) => primary};
     top: -0.5rem;
     bottom: -0.5rem;
     left: -0.5rem;
     right: -0.5rem;
     z-index: -1;
-    ${({ isMain, borderColor }) => {
+    ${({
+      isMain,
+      theme: {
+        colors: { primary },
+      },
+    }) => {
       if (isMain) {
-        return `background-color: ${borderColor};`;
+        return `background-color: ${primary};`;
       }
     }}
   }

@@ -1,10 +1,11 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 import SectionContainer from "components/other/SectionContainer/SectionContainer";
 import ArticleContainer from "components/other/ArticleContainer/ArticleContainer";
-import ButtonLink from "components/other/ButtonLink/ButtonLink";
+import Link from "components/other/ButtonLink/Link";
 import ProjectsArr from "./ProjectsData";
-import { ButtonsWrapper } from "components/other/ButtonLink/ButtonLink.styles";
-import { theme } from "assets/styles/theme";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { LinksWrapper } from "components/other/ButtonLink/ButtonLink.styles";
 import { ProjectsWrapper, ProjectDescription } from "./ProjectsSection.styles";
 import {
   BoldText,
@@ -12,23 +13,20 @@ import {
 } from "components/other/ArticleContainer/ArticleContainer.styles";
 
 const ProjectsSection: FunctionComponent = () => {
-  const {
-    colors: { yellow, black },
-  } = theme;
+  useEffect(() => {
+    Aos.init({
+      duration: 1200,
+    });
+  }, []);
 
   return (
-    <SectionContainer
-      bgColor={black}
-      textColor={yellow}
-      headlineText="Projects"
-    >
+    <SectionContainer headlineText="Projects" id="projects">
       <ProjectsWrapper>
         {ProjectsArr.map(
-          ({ title, desc, technologies, liveLink, githubLink }) => (
+          ({ title, desc, technologies, liveLink, githubLink }, i) => (
             <ArticleContainer
+              aos={i % 2 === 0 ? "fade-right" : "fade-left"}
               headlineText={title}
-              bgColor={black}
-              borderColor={yellow}
               key={title}
             >
               <div>
@@ -37,27 +35,15 @@ const ProjectsSection: FunctionComponent = () => {
                 <ul>
                   {technologies.map((tech) => (
                     <li key={tech}>
-                      <Technology borderColor={yellow} textColor={black}>
-                        {tech}
-                      </Technology>
+                      <Technology>{tech}</Technology>
                     </li>
                   ))}
                 </ul>
               </div>
-              <ButtonsWrapper>
-                <ButtonLink
-                  text="Live"
-                  link={liveLink}
-                  textColor={black}
-                  bgColor={yellow}
-                />
-                <ButtonLink
-                  text="Github"
-                  link={githubLink}
-                  textColor={black}
-                  bgColor={yellow}
-                />
-              </ButtonsWrapper>
+              <LinksWrapper>
+                <Link text="Live" link={liveLink} />
+                <Link text="Github" link={githubLink} />
+              </LinksWrapper>
             </ArticleContainer>
           )
         )}

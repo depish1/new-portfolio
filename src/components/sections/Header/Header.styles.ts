@@ -1,19 +1,36 @@
 import styled from "styled-components";
 
-export const StyledHeader = styled.header`
+interface Props {
+  isScrolled: boolean;
+  isMenuOpen: boolean;
+}
+
+export const StyledHeader = styled.header<Props>`
   position: fixed;
-  top: 0;
+  top: 0px;
   z-index: 20;
-  height: ${({ theme }) => theme.headerHeight};
+  height: calc(
+    ${({ theme: { headerHeight } }) => headerHeight} +
+      ${({ isScrolled }) => (isScrolled ? "0rem" : "1rem")}
+  );
+
   width: 100%;
+  max-width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: ${({ theme }) => theme.colors.yellow};
-  background-color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.text};
+  background-color: ${({
+    isScrolled,
+    theme: {
+      colors: { primary },
+    },
+  }) => (isScrolled ? `transparent` : primary)};
+  backdrop-filter: blur(0.25rem);
   padding: 0 4rem;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  transition: all 0.8s ease-in-out;
 
   @media only screen and (max-width: calc(${({ theme }) =>
       theme.menuBreakPoint} + 100px)) {
@@ -22,17 +39,30 @@ export const StyledHeader = styled.header`
 
   @media only screen and (max-width: ${({ theme }) => theme.menuBreakPoint}) {
     padding: 0 1rem;
+    ${({
+      isMenuOpen,
+      theme: {
+        colors: { background },
+      },
+    }) => isMenuOpen && `background: ${background};`}
   }
 `;
 
-export const StyledLogo = styled.div`
+export const StyledLogo = styled.div<Props>`
   display: flex;
   align-items: center;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.yellowHover};
+  color: ${({
+    isScrolled,
+    isMenuOpen,
+    theme: {
+      colors: { primary, background },
+    },
+  }) => (isScrolled ? primary : background)};
   position: relative;
-  border-bottom: dashed 4px ${({ theme }) => theme.colors.yellow};
+  border-bottom: dashed 4px ${({ theme }) => theme.colors.text};
+  transition: all 0.8s ease-in-out;
 
   .left {
     transform: rotate(-90deg);
@@ -40,5 +70,15 @@ export const StyledLogo = styled.div`
   .right {
     position: relative;
     top: 1px;
+  }
+
+  @media only screen and (max-width: calc(${({ theme }) =>
+      theme.menuBreakPoint} + 100px)) {
+    ${({
+      isMenuOpen,
+      theme: {
+        colors: { primary },
+      },
+    }) => isMenuOpen && `color: ${primary}`};
   }
 `;

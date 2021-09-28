@@ -5,14 +5,17 @@ import { closeMenu } from "redux/menu";
 import { TStore } from "redux/store";
 
 const menuOptions = [
-  { text: "Home", link: "#" },
-  { text: "Projects", link: "#" },
-  { text: "Skills", link: "#" },
-  { text: "About", link: "#" },
-  { text: "Contact", link: "#" },
+  { text: "Home", link: "#hero" },
+  { text: "Projects", link: "#projects" },
+  { text: "About", link: "#about" },
+  { text: "Contact", link: "#contact" },
 ];
 
-const Nav: React.FunctionComponent = () => {
+interface Props {
+  isScrolled: boolean;
+}
+
+const Nav: React.FunctionComponent<Props> = ({ isScrolled }) => {
   const isMenuOpen = useSelector(
     ({ menuReducer }: TStore) => menuReducer.isMenuOpen
   );
@@ -23,7 +26,7 @@ const Nav: React.FunctionComponent = () => {
     dispatch(closeMenu());
   };
   return (
-    <StyledNav isMenuOpen={isMenuOpen}>
+    <StyledNav isMenuOpen={isMenuOpen} isScrolled={isScrolled}>
       <ul onClick={handleCloseMenu}>
         {menuOptions.map((el) => (
           <li key={el.text}>

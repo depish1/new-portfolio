@@ -3,8 +3,7 @@ import { StyledSectionContainer, Wrapper } from "./SectionContainer.styles";
 import { SectionHeadline } from "components/other/Headlines/Headlines.styles";
 
 interface Props {
-  bgColor: string;
-  textColor: string;
+  id: string;
   headlineText?: string;
   centerXY?: boolean;
   children: React.ReactNode;
@@ -12,13 +11,12 @@ interface Props {
 }
 
 const SectionContainer: FunctionComponent<Props> = ({
-  bgColor,
-  textColor,
   headlineText,
   children,
+  id,
 }) => {
   return (
-    <StyledSectionContainer bgColor={bgColor} textColor={textColor}>
+    <StyledSectionContainer id={id}>
       <Wrapper>
         {headlineText && <SectionHeadline>{headlineText}</SectionHeadline>}
         {children}

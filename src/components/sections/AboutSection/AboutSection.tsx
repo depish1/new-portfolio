@@ -1,5 +1,4 @@
-import { FunctionComponent, ReactElement } from "react";
-import { theme } from "assets/styles/theme";
+import { useEffect, FunctionComponent, ReactElement } from "react";
 import SectionContainer from "components/other/SectionContainer/SectionContainer";
 import ArticleContainer from "components/other/ArticleContainer/ArticleContainer";
 import {
@@ -7,6 +6,8 @@ import {
   BoldText,
 } from "components/other/ArticleContainer/ArticleContainer.styles";
 import { AboutMeTextSection, SkillsList } from "./AboutSection.styles";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 interface ISkills {
   category: string;
@@ -14,7 +15,6 @@ interface ISkills {
 }
 
 const AboutSection: FunctionComponent = (): ReactElement => {
-  const { yellow, black } = theme.colors;
   const skills: ISkills[] = [
     {
       category: "React",
@@ -32,30 +32,28 @@ const AboutSection: FunctionComponent = (): ReactElement => {
   const AboutMeText2: string =
     "I am a communicative person who likes to spend time with other people. When I program, I am soaked up and I want to understand the problem in its entirety. I specialize in React and am currently open to a job offer in Warsaw or remotely.";
 
+  useEffect(() => {
+    Aos.init({
+      duration: 1200,
+    });
+  }, []);
+
   return (
-    <SectionContainer bgColor={yellow} textColor={black}>
-      <ArticleContainer
-        headlineText="About me"
-        borderColor={black}
-        bgColor={yellow}
-      >
+    <SectionContainer id="about">
+      <ArticleContainer headlineText="About me" aos="fade-down">
         <AboutMeTextSection>
           <p>{AboutMeText1}</p>
           <p>{AboutMeText2}</p>
         </AboutMeTextSection>
-        <BoldText color={black}>My skills:</BoldText>
+        <BoldText>My skills:</BoldText>
         <SkillsList>
           {skills.map(({ category, skillsArr }) => (
             <li key={category}>
-              <Technology borderColor={black} textColor={yellow} isMain={true}>
-                {category}
-              </Technology>
+              <Technology isMain={true}>{category}</Technology>
               <ul>
                 {skillsArr.map((skill) => (
                   <li key={skill}>
-                    <Technology borderColor={black} textColor={yellow}>
-                      {skill}
-                    </Technology>
+                    <Technology>{skill}</Technology>
                   </li>
                 ))}
               </ul>

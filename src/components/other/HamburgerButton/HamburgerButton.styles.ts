@@ -12,12 +12,6 @@ export const StyledHamburgerButton = styled.button`
     display: none;
   }
 
-  &:hover {
-    .hamburger__line {
-      background-color: ${({ theme }) => theme.colors.yellowHover};
-    }
-  }
-
   .hamburger__wrapper {
     width: 2.5rem;
     height: 2.5rem;
@@ -32,7 +26,7 @@ export const StyledHamburgerButton = styled.button`
     display: block;
     width: 120%;
     height: 6px;
-    background-color: ${({ theme }) => theme.colors.yellow};
+    background-color: ${({ theme }) => theme.colors.text};
     content: "";
     border-radius: 5px;
     transition: all 0.4s ease-in-out;

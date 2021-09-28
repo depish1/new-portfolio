@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { theme } from "./theme";
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
@@ -12,7 +13,14 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Roboto', sans-serif;
         width: 100%;
         min-height: 100vh;
+        
+    }
+    body {
         overflow-x: hidden;
+    }
+
+    html {
+        scroll-behavior: smooth;
     }
     a, button {
         font-family: 'Roboto', sans-serif;

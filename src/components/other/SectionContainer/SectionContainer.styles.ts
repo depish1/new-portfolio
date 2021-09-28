@@ -1,20 +1,20 @@
 import styled from "styled-components";
 
 interface IStyledSectionContainerProps {
-  bgColor: string;
-  textColor: string;
+  id: string;
 }
 
 export const StyledSectionContainer = styled.section<IStyledSectionContainerProps>`
   width: 100%;
   min-height: 100vh;
-  color: ${({ textColor }) => textColor};
-  background-color: ${({ bgColor }) => bgColor};
+  color: ${({ theme }) => theme.colors.text};
+  background-color: ${({ theme }) => theme.colors.background};
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   padding: 3rem 1rem;
+  position: relative;
 
   @media only screen and (min-width: ${({ theme }) => theme.menuBreakPoint}) {
     padding: 2rem;

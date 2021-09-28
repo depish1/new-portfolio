@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-interface h2Props {
-  bgColor: string;
-}
-
 export const SectionHeadline = styled.h2`
   display: flex;
   justify-content: center;
@@ -15,10 +11,11 @@ export const SectionHeadline = styled.h2`
   max-width: 1280px;
 `;
 
-export const ArticleHeadline = styled.h2<h2Props>`
+export const ArticleHeadline = styled.h2`
   display: block;
   padding: 0 0.5rem;
-  background-color: ${({ bgColor }) => bgColor};
+  background-color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.primary};
   position: absolute;
   top: 0;
   transform: translate(-0.5rem, -50%);
