@@ -3,10 +3,13 @@ import styled from "styled-components";
 export const StyledHamburgerButton = styled.button`
   border: none;
   transition: all 0.4s ease-in-out;
-  padding: 0 1rem;
+  padding: 0 2rem;
   background-color: transparent;
   cursor: pointer;
   height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.menuBreakPoint}) {
     display: none;

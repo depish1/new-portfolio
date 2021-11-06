@@ -9,6 +9,16 @@ interface Props {
 export const StyledNav = styled.nav<Props>`
   height: 100%;
 
+  @media only screen and (max-width: ${({ theme }) => theme.menuBreakPoint}) {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: ${({ theme: { headerHeight } }) => headerHeight};
+    height: calc(100vh - ${({ theme: { headerHeight } }) => headerHeight});
+    background-color: ${({ isMenuOpen }) =>
+      isMenuOpen ? "#00000099" : "transparent"};
+  }
+
   ul {
     display: flex;
     height: 100%;
@@ -17,20 +27,14 @@ export const StyledNav = styled.nav<Props>`
 
     @media only screen and (max-width: ${({ theme }) => theme.menuBreakPoint}) {
       flex-direction: column;
-      position: absolute;
+      position: relative;
       z-index: 10;
-      top: calc(
-        ${({ theme: { headerHeight } }) => headerHeight} +
-          ${({ isScrolled }) => (isScrolled ? "0rem" : "1rem")}
-      );
+      top: 0;
       left: 0;
       width: 100%;
-      height: calc(
-        100vh - ${({ theme }) => theme.headerHeight} -
-          ${({ isScrolled }) => (isScrolled ? "0rem" : "1rem")}
-      );
-      transform: translateX(${({ isMenuOpen }) => (isMenuOpen ? "0" : "100%")});
+      display: ${({ isMenuOpen }) => (isMenuOpen ? "block" : "none")};
     }
+    z-index: 1000;
 
     li {
       height: 100%;
@@ -38,6 +42,7 @@ export const StyledNav = styled.nav<Props>`
       @media only screen and (max-width: ${({ theme }) =>
           theme.menuBreakPoint}) {
         background-color: ${({ theme }) => theme.colors.background};
+        height: auto;
         a {
           color: ${({ theme }) => theme.colors.text};
         }
@@ -64,6 +69,11 @@ export const StyledNav = styled.nav<Props>`
         font-weight: 700;
         font-size: 1.3rem;
         transition: all 0.3s ease-in-out;
+
+        @media only screen and (max-width: ${({ theme }) =>
+            theme.menuBreakPoint}) {
+          padding: 1rem 3rem;
+        }
 
         &::before {
           display: block;

@@ -1,48 +1,58 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Modal from "./Modal";
-import { ReactComponent as ErrorSvg } from "assets/icons/error.svg";
-import { ReactComponent as SuccessSvg } from "assets/icons/success.svg";
+import SendingResult from "components/other/SendingResult/SendingResult";
+import Loader from "components/other/Loader/Loader";
 
-interface D {
-  message: string;
-  isOpen: boolean;
-  isSuccess: boolean;
-  onCloseClick: () => void;
+enum ComponentsList {
+  SendingResult = "SendingResult",
+  Loader = "Loader",
 }
 
-export const useModal = (goodMsg: string, badMsg: string) => {
+export const useModal = () => {
+  const [componentName, setComponentName] = useState<ComponentsList>(
+    ComponentsList.Loader
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [message, setMessage] = useState(badMsg);
-  const [svg, setSvg] = useState<
-    React.FunctionComponent<
-      React.SVGProps<SVGSVGElement> & {
-        title?: string | undefined;
-      }
-    >
-  >(ErrorSvg);
-
-  useEffect(() => {
-    isSuccess ? setMessage(goodMsg) : setMessage(badMsg);
-    isSuccess ? setSvg(SuccessSvg) : setSvg(ErrorSvg);
-    console.log("xd");
-  }, [badMsg, goodMsg, isSuccess]);
 
   const closeHandle = () => {
     setIsOpen(false);
+    setComponentName(ComponentsList.Loader);
   };
-  const openHandle = (isSuccess: boolean) => {
+  const openHandle = (isSuccess: boolean, componentName: ComponentsList) => {
     setIsOpen(true);
     setIsSuccess(isSuccess);
+    setComponentName(componentName);
   };
 
+  const changeComponentHandle = (componentName: ComponentsList) => {
+    setComponentName(componentName);
+  };
+
+  let componentToRender: JSX.Element | null;
+
+  switch (componentName) {
+    case ComponentsList.Loader:
+      componentToRender = (
+        <Loader isSuccess={isSuccess} onCloseClick={closeHandle} />
+      );
+      break;
+    case ComponentsList.SendingResult:
+      componentToRender = (
+        <SendingResult isSuccess={isSuccess} onCloseClick={closeHandle} />
+      );
+      break;
+    default:
+      componentToRender = null;
+  }
+
   return {
-    ModalComponent: Modal,
+    ModalComponent: () => (
+      <Modal onCloseClick={closeHandle}>{componentToRender}</Modal>
+    ),
     isOpen: isOpen,
-    isSuccess: isSuccess,
-    message: message,
-    Svg: svg,
     openHandle: openHandle,
-    closeHandle: closeHandle,
+    changeComponentHandle: changeComponentHandle,
+    ComponentsList: ComponentsList,
   };
 };

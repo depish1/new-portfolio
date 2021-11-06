@@ -23,17 +23,14 @@ const ContactForm: FunctionComponent = () => {
     email: "",
     msg: "",
   });
-  const goodMsg: string = "The message has been sent correctly.";
-  const badMsg: string = "Something went wrong. Please try again later.";
+
   const {
     ModalComponent,
     isOpen,
-    isSuccess,
-    message,
-    Svg,
     openHandle,
-    closeHandle,
-  } = useModal(goodMsg, badMsg);
+    ComponentsList,
+    changeComponentHandle,
+  } = useModal();
 
   const {
     register,
@@ -66,23 +63,24 @@ const ContactForm: FunctionComponent = () => {
         );
     try {
       if (formRef.current) {
+        openHandle(true, ComponentsList.Loader);
         await emailjs.sendForm(
           "service_xb6s4de",
           "template_haa544v",
           formRef.current,
           "user_tXPh9Gj8Um52yxFhQMhF8"
         );
-        openHandle(true);
         reset();
         setInputsValues({
           name: "",
           email: "",
           msg: "",
         });
+        changeComponentHandle(ComponentsList.SendingResult);
       }
     } catch (error: any) {
       console.error(error);
-      openHandle(false);
+      changeComponentHandle(ComponentsList.SendingResult);
     }
   };
 
@@ -111,6 +109,7 @@ const ContactForm: FunctionComponent = () => {
         ref={formRef}
         onSubmit={handleSubmit(onSubmit)}
         noValidate
+        autoComplete="off"
       >
         <InputWrapper>
           <input
@@ -168,14 +167,7 @@ const ContactForm: FunctionComponent = () => {
 
         <Button type="submit" text="Send" customMarginTop={"2rem"} />
       </StyledContactForm>
-      {isOpen && (
-        <ModalComponent
-          message={message}
-          Svg={Svg}
-          isSuccess={isSuccess}
-          onCloseClick={closeHandle}
-        />
-      )}
+      {isOpen && <ModalComponent />}
     </>
   );
 };

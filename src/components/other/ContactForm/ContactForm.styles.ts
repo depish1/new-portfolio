@@ -24,7 +24,7 @@ export const StyledContactForm = styled.form`
     font-size: 1.1rem;
     background-color: ${({ theme }) => theme.colors.background};
     width: 100%;
-    border: 2px inset ${({ theme }) => theme.colors.primary};
+    border: 2px inset ${({ theme }) => theme.colors.border};
     border-radius: 5px;
   }
 
@@ -45,7 +45,20 @@ export const StyledContactForm = styled.form`
     bottom: -1.5rem;
     font-size: 1rem;
     font-weight: bold;
-    color: ${({ theme }) => theme.colors.error};
+    color: ${({ theme }) => theme.colors.text};
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 120%;
+      height: 50%;
+      background-color: ${({ theme }) => theme.colors.error};
+      opacity: 0.7;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+    }
   }
 `;
 

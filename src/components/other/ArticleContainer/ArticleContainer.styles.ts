@@ -6,7 +6,7 @@ interface ITechnologyProps {
 
 export const StyledArticleContainer = styled.article`
   padding: 2rem;
-  border: 3px solid ${({ theme }) => theme.colors.text};
+  border: 3px solid ${({ theme }) => theme.colors.border};
   width: 100%;
   max-width: 550px;
   position: relative;

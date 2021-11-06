@@ -9,11 +9,7 @@ export const StyledHeader = styled.header<Props>`
   position: fixed;
   top: 0px;
   z-index: 20;
-  height: calc(
-    ${({ theme: { headerHeight } }) => headerHeight} +
-      ${({ isScrolled }) => (isScrolled ? "0rem" : "1rem")}
-  );
-
+  height: ${({ theme: { headerHeight } }) => headerHeight};
   width: 100%;
   max-width: 100vw;
   display: flex;
@@ -39,6 +35,7 @@ export const StyledHeader = styled.header<Props>`
 
   @media only screen and (max-width: ${({ theme }) => theme.menuBreakPoint}) {
     padding: 0 1rem;
+    z-index: 9999;
     ${({
       isMenuOpen,
       theme: {
